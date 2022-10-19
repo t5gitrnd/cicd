@@ -9,12 +9,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "author": "Subhadip Sahoo",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^10.10.0"
+    "cypress": "^10.10.0",
+    "eslint-plugin-cypress": "^2.12.1"
   },
   "eslintConfig": {
     "extends": [

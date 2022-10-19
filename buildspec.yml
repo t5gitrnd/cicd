@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+      - npm install
+
+  pre_build:
+    commands:
+      - echo Running e2e testing
+      - npm run cypress:run
+
+  build:
+    commands:
+      - echo Deploying the app...
+      - echo This is test
+
+  post_build:
+    commands:
+      - 
+
