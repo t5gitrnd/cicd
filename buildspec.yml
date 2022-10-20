@@ -14,9 +14,9 @@ phases:
   build:
     commands:
       - echo Deploying the app...
-      - echo This is test
+      - echo This is test build
 
   post_build:
     commands:
-      - 
+      - echo Successfully deployed...
 
