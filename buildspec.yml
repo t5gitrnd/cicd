@@ -1,21 +1,31 @@
 version: 0.2
 
+env:
+  variables:
+    AWS_REGION: "us-east-1"
+    BUILD_DIR: "build"
+    S3_BUCKET: poc.friender.io
+    STAGE: "dev"
+  parameter-store:
+    AWS_ACCESS_KEY_ID: "/CodeBuild/codebuild/cide/aws-access-key-id"
+    AWS_SECRET_ACCESS_KEY: "/CodeBuild/codebuild/cide/aws-secret-access-key"
+
 phases:
   install:
+    runtime-versions:
+      nodejs: 16
     commands:
       - echo Installing dependencies...
       - npm install
-      - npm start
-
-  pre_build:
-    commands:
-      - echo Running e2e testing
-      - npm run cypress:run
-
+      - apt-get install -y libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 xvfb
   build:
     commands:
-      - echo Deploying the app...
-      - echo This is test build
+      - echo Building the app
+      - npm run build
+      - npm run serve $BUILD_DIR & npx wait-on http://localhost:3000
+      - npm run cypress:run
+      - pip3 install awscli --upgrade --user
+      - aws s3 sync $BUILD_DIR s3://$S3_BUCKET
 
   post_build:
     commands:
