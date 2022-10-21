@@ -16,8 +16,7 @@ phases:
       nodejs: 16
     commands:
       - echo Installing dependencies...
-      - npm install
-#      - apt-get install -y libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 xvfb
+      - npm i
   build:
     commands:
       - echo Building the app
